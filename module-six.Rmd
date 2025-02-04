@@ -1,0 +1,128 @@
+---
+title: "module-six"
+output: html_document
+date: "2025-02-04"
+---
+
+```{r}
+library(curl)
+file <-  curl("https://raw.githubusercontent.com/fuzzyatelin/fuzzyatelin.github.io/refs/heads/master/AN588_Fall23/Country-Data-2016.csv")
+dataframe <- read.csv(file, header = TRUE, sep = ",", stringsAsFactors = FALSE)
+head(dataframe)
+summary(dataframe$area)
+```
+**Summary()**
+For numeric data: provides summary including minimum, 25th percentile, median, mean, 75th percentile, and maximum of the data, as well as a count of NA (missing values)
+
+For factors: returns a count of a specific string/factor.
+
+**Changing the data type of a column**
+use asFactor() or asInteger() or asNumeric() or asLogical()
+```{r}
+dataframe$govt_form <- as.factor(dataframe$govt_form.) 
+summary(dataframe$govt_form)
+summary(dataframe$area)
+```
+
+**Help Tab**
+Can help you figure out what various functions do. 
+Located at the top of the bottom right panel.
+
+Can also type ? followed by a topic to get help on it.
+Ex: ?integer
+
+**Creating a new column in the dataframe**
+
+```{r}
+dataframe$density <- dataframe$population/dataframe$area
+summary(dataframe$density)
+```
+
+**Showing the 10 most dense countries**
+```{r}
+dataframe2 <- dataframe[order(-dataframe$density),]
+dataframe2[1:10]
+```
+**Ordering by biggest area**
+```{r}
+library(curl)
+file <-  curl("https://raw.githubusercontent.com/fuzzyatelin/fuzzyatelin.github.io/refs/heads/master/AN588_Fall23/Country-Data-2016.csv")
+dataframe <- read.csv(file, header = TRUE, sep = ",", stringsAsFactors = FALSE)
+dataframe3 <- dataframe[order(-dataframe$area),]
+dataframe3[1:10]
+```
+**Removing NAs**
+na.rm = true
+
+**Boxplot function**
+Creates a simple visual of the 5 number summary of numeric data. 
+Can only be run on integers or numerics. 
+Boxplot()
+Reminder: can use str() command to see what columns are what type of data
+```{r}
+boxplot(as.numeric(dataframe$population))
+2.71828^15
+```
+
+
+**Barplots**
+barplot().
+**The par() command**
+This command organizes multiple box plots
+Ex: par(mfrow = c(2,3)
+The next 6 boxplots will be arranged in a 2 row, 3 column array
+
+```{r}
+par(mfrow = c(2, 3))
+boxplot(dataframe$population)
+boxplot(log(dataframe$population))
+boxplot(dataframe$area)
+boxplot(log(dataframe$area))
+barplot(dataframe$population)
+barplot(dataframe$area)
+```
+
+**Creating Histograms**
+hist() function.
+This function will naturally have the frequency (number of observations) on the y axis and the numeric/integer variable on the x axis. 
+If you put in the argument freq = FALSE it will instead have the proportion (frequency / number of total observations) of observations on the y axis.
+```{r}
+hist(log(dataframe$population))
+hist(log(dataframe$population), freq = FALSE)
+```
+
+**Density plots**
+density() creates a density plot
+This is essentially a line graph representation of a histogram.
+
+**Note**
+For all of these plots, you can use the following commands as arguments.
+xlab = "" x axis label
+ylab = "" y axis label
+more
+more
+more
+more
+more
+
+**Tables**
+table() can be used to summarize counts and proportions for categorical variables in the dataset.
+
+**~ operator**
+Can be used to overlay two different histograms or boxplots
+
+New Data set
+```{r}
+library(curl)
+file2 <- curl("https://raw.githubusercontent.com/fuzzyatelin/fuzzyatelin.github.io/refs/heads/master/AN588_Fall23/KamilarAndCooperData.csv")
+d <- read.csv(file2, header = TRUE, sep = ",", stringsAsFactors = FALSE)
+boxplot(log(d$Body_mass_female_mean)~d$Family)
+
+```
+
+
+
+
+
+
+
