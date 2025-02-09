@@ -4,3 +4,21 @@ output: html_document
 date: "2025-02-09"
 ---
 
+**Challenge 1**
+Given a vector, write a function to determine the geometric mean of the values in a vector.
+```{r}
+#reminder: to create a function: function name <- function(arguments/inputs){code to run}
+geometricMean <- function(x){
+  prod(x)^(1/length(x))
+  #takes the product of all of the values in the vector x, raises it to the 1/n, which is the same as taking the nth root of it.
+}
+
+vector <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 25, 50, 100, 200, 1000)
+#creates a vector: a series of data of the same data type
+geometricMean(vector)
+#runs our function that we just created on the vector we just created
+
+#Note: na.rm = TRUE, and na.omit() can be helpful tools
+```
+
+
