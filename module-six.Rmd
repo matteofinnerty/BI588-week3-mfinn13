@@ -120,9 +120,91 @@ boxplot(log(d$Body_mass_female_mean)~d$Family)
 
 ```
 
+**Using GGPlot**
+A more intuitive and neat way to graph figures. 
+To access ggplot, use the command library(ggplot2)
+Creates an object which will be the figure
+```{r}
+library(ggplot2)
+p <- ggplot(data = d, aes(x = Family, y = log(Body_mass_female_mean)))  #define the variables
+p <- p + geom_boxplot()  #graph them in a boxplot
+p <- p + theme(axis.text.x = element_text(angle = 90))  #put x-axis names at 90deg
+p <- p + ylab("log(Female Body Mass)")  #rename y-axis title
+p  #show me the graph
+
+```
+
+**Scatterplots**
+Make a scatterplot with plot(x=XXX, y=YYY)
+Plotting relationship between female brain size and female body size, while differentiating families
+
+A pretty scatterplot using ggplot
+```{r}
+
+p <- ggplot(data = d, aes(x = log(Body_mass_female_mean), y = log(Brain_Size_Female_Mean),
+    color = factor(Family)))  # first, we build a plot object and color points by Family
+p <- p + xlab("log(Female Body Mass)") + ylab("log(Female Brain Size)")  # then we modify the axis labels
+p <- p + geom_point()  # then we make a scatterplot
+p <- p + theme(legend.position = "bottom", legend.title = element_blank())  # then we modify the legend
+p  # and, finally, we plot the object
+
+```
+We can also add regression lines, using geom_smooth()
+
+**Aggregate statistics and the {dplyr} package**
+
+Calculating summary statistics for groups of obersvations in a data frame
+
+aggregate() function
+Within the aggregate function, FUN = "whatever function you need" 
+
+dplyr package includes a set of *verbs* that can perform useful operations on data sets
+
+if there is a function within a package which has the same name as another, you must use the name of the package and a :: before the function so that R knows which function you want. 
+
+*filter* function in dplyr package: can be used to create a new dataframe with certain filters
+
+*arrange* function can organize data by alphabetical (minus sign can be used to reverse order)
+
+*select* function can be used to only select the columns/categories that you want
+
+*rename* function can rename variables, rename(dataframe, new name = old name)
+
+*mutate* function creates a new variable based on already existing variables
+
+*summarize* function 
+
+*group_by()* function
+
+**Piping**
+Allows you to run functions sequentially. Takes the result of one function and puts it into the next function. The pipe operator is %>%
+
+**Or operator**
+found under the delete key, |
+
+**And operator**
+found at the 7 key, &
+
+**Challenge 8**
+```{r}
+library(ggplot2)
+library(curl)
+library(dplyr)
+file2 <- curl("https://raw.githubusercontent.com/fuzzyatelin/fuzzyatelin.github.io/refs/heads/master/AN588_Fall23/KamilarAndCooperData.csv")
+d <- read.csv(file2, header = TRUE, sep = ",", stringsAsFactors = FALSE)
+
+s <- d%>%
+    filter(Family =="Cercopithecidae"|Family =="Atelidae")
+
+
+p <- ggplot(data = s, aes(x = Family, y = Body_mass_female_mean, fill = factor(Family)))# first, we build a plot object and color points by Family
+p <- p + xlab("Family") + ylab("Mean Female Body Mass")  # then we modify the axis labels
+p <- p + geom_bar(stat='identity')  # then we make a barplot  # then we modify the legend
+p  # and, finally, we plot the object
 
 
 
 
 
 
+```
