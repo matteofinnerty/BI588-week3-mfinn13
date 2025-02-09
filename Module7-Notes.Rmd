@@ -1,0 +1,32 @@
+---
+title: "Module7-Notes"
+output: html_document
+date: "2025-02-09"
+---
+**Module 7: Central Tendency and Variance**
+This module requires the installation of the package {sciplot}
+```{r}
+install.packages('sciplot')
+#downloads new package, sciplot
+```
+**Important Terms**
+**Population (N)** = includes all of the elements from a set of data (e.g., all of the vervet monkeys in the world)
+**Sample (n)** = one or more observations from a population (e.g., the set of vervets trapped during a field season in South Africa, the set of vervet skeletons found in a museum)
+**Parameter** = a measurable characteristic of a population (e.g., the mean value of the femur length of all vervets)
+**Statistic** = a measurable characteristic about a sample, described by a function applied to the sample (e.g., the mean length of vervet monkey femora found at the American Museum of Natural History).
+
+Note: A statistic can be used to infer a property of the population, such as an unknown parameter. 
+
+**Measures of Central Tendency**
+*Mode* = most common measurement of values observed
+*Median* = middle value in a rank ordered series of values
+*Mean* = the sum of measured values divided by n = the average or the arithmetic mean
+
+These measures of central tendency are useful for additive.
+
+Other measures of central tendency are useful for data that are not additive. For example: 
+
+*Harmonic mean* = the reciprocal of the average of the reciprocals of a set of values. This measure is particularly useful for understanding the mean of a set of ratios or rates, because it will equalize the weights of each data point.
+*Geometric mean* = a measure of central tendency for processes that are multiplicative rather than additive = the nth root of the product of the values (for the mathematically inclined, it also = the antilog of the averaged log values). This measure is particularly useful when the values are not independent of each other, or if they make large fluctuations.
+
+
