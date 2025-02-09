@@ -21,4 +21,88 @@ summary(dataframe)
 ```
 
 **Challenge 2**
+Making box plots of the population and area data for the data frame that we already created. Making boxplots again after log transforming the data. Uses boxplot() function and par() function. 
+```{r}
+par(mfrow = c(2,2))
+#organizes the following plots into 2 rows (left number) and 2 columns (right number)
+
+boxplot(dataframe$population, na.rm = TRUE)
+boxplot(dataframe$area, na.rm = TRUE)
+boxplot(log(dataframe$population), na.rm = TRUE)
+boxplot(log(dataframe$area), na.rm = TRUE)
+#creates the 4 boxplots
+```
+
+**Challenge 3**
+Making a histogram of log transformed population and area data. Exploring what happens if freq=TRUE vs if freq=FALSE. Uses hist() function.
+```{r}
+par(mfrow = c(2,2))
+hist(log(dataframe$population), freq = FALSE, col = "red", main = "Plot 1")
+hist(log(dataframe$area), freq = FALSE, col = "blue", main = "Plot 2")
+#creating two histograms, one for population, one for area. col influences color, main determines the title.
+
+hist(log(dataframe$population), freq = TRUE, col = "green", main = "Plot 3")
+hist(log(dataframe$area), freq = TRUE, col = "orange", main = "Plot 4")
+#The same histograms, but now freq = TRUE. Frequency = TRUE makes the frequency the y axis. In other words, the count. Frequency = FALSE makes the y axis the proportion 
+
+```
+
+**Challenge 4** 
+Make a table to show what the most common form of government is. The table() function makes a table. It can be sorted using the sort() function. 
+```{r}
+sort(table(dataframe$govt_form), decreasing = TRUE)
+#creates a sorted table of government forms, from most to least common.
+
+```
+
+**Challenge 5**
+Overlaying boxplots using the ~ operator. 
+```{r}
+library(curl)
+file2 <- curl("https://raw.githubusercontent.com/fuzzyatelin/fuzzyatelin.github.io/refs/heads/master/AN588_Fall23/KamilarAndCooperData.csv")
+d <- read.csv(file2, header = TRUE, sep = ",", stringsAsFactors = FALSE)
+boxplot(log(d$Body_mass_female_mean)~d$Family)
+
+```
+
+**Challenge 6**
+Creating scatterplots using the plot() function.
+```{r}
+par(mfrow = c(1,2))
+plot(x = d$Body_mass_female_mean, y = d$Brain_Size_Female_Mean)
+plot(x = log(d$Body_mass_female_mean), y = log(d$Brain_Size_Female_Mean))
+#creates two scatterplots, where the x = determines the independent variable, and the y = determines the dependent variable
+```
+
+**Challenge 7**
+Using ggplot2 to create a scatterplot.
+```{r}
+library(tidyverse)
+plot <- ggplot(data = d, aes(x = log(Body_mass_female_mean), y = log(MaxLongevity_m)))
+#ggplot builds plots line by line, notice we do not have to use the $ operator
+plot <- plot + geom_point()
+##geom_point() makes a scatterplot
+plot <- plot +geom_smooth(method = "lm")
+#adds a smooth best-fit curve
+plot
+
+
+```
+
+**Challenge 8**
+```{r}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

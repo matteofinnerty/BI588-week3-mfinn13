@@ -174,7 +174,7 @@ if there is a function within a package which has the same name as another, you 
 
 *summarize* function 
 
-*group_by()* function
+*group_by()* function groups by certain variables.
 
 **Piping**
 Allows you to run functions sequentially. Takes the result of one function and puts it into the next function. The pipe operator is %>%
