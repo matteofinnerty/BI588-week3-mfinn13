@@ -37,7 +37,14 @@ Examples of measures of spread include:
 *interquartile range*: 75th percentile - 25th percentile
 *sum of squares*: the sum of the squared differences of each data point from the mean
 *variance*: the sum of squares divided by n
+*sample variance* the sum of squares divided by n-1
 *standard deviation*: the square root of variance 
 
+More important terms
+*Degrees of freedom*: the number of values used to calculate a sample statistic that are free to vary. Is equal to n-(the number of sample statistics you are creating). This is typically n-1.
+
+Variance tends to decrease as sample size increases 
+
+There is a built in R function to calculate standard deviation. It is sd(). 
 
 

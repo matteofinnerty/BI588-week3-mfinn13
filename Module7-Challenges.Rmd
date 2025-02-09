@@ -21,4 +21,22 @@ geometricMean(vector)
 #Note: na.rm = TRUE, and na.omit() can be helpful tools
 ```
 
+**Challenge 2**
+Write a function to calculate the sum of squares for a vector**
+```{r}
+sos <- function(x){
+  sum((x-mean(x))^2)
+  #takes the sum of the difference of each value from the mean of the whole vector, squared. 
+}
+sos(vector)
+```
+
+**Challenge 3**
+Write a function to calculate the variance of a vector representing a sample.
+```{r}
+sampVariance <- function(x){
+  (sum((x-mean(x))^2))/(length(x)-1)
+}
+sampVariance(vector)
+```
 
