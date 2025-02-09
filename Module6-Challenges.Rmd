@@ -91,7 +91,39 @@ plot
 
 **Challenge 8**
 ```{r}
+d2 <- mutate(d, Binomial = paste(Genus, Species, sep = " "))
+#creates new data frame from original data frame, includes new variable, Binomial, which is a concatenation of Genus + Species
+d2 <- select(d2, Binomial, Body_mass_female_mean, Body_mass_male_mean, Mass_Dimorphism)
+#makes it so that d2 only has 4 variables: binomial, mean female body mass
 
+summary(d2)
+head(d2)
+#summarizes the variables of d2, and prints the first 6 lines of d2
+
+d2 <- group_by(d2, Binomial)
+d2[1:20,]
+#organizes the data by binomial, then prints the first 20 lines. Reminder: [row, column] must have a comma in order to determine if you want rows or columns
+summarise(d2, avgF = mean(Body_mass_female_mean, na.rm = TRUE), avgM = mean(Body_mass_male_mean,
+na.rm = TRUE), avgBMD = mean(Mass_Dimorphism, na.rm = TRUE))
+#creates the following summary statistics: the mean male mass among all the primates in the data set, the mean female mass among all the primates in the data set, and the mean sexual dimorphism among all the primates in the data set 
+
+library(tidyverse)
+d3 <- filter(d, Family == "Cercopithecidae" | Family == "Atelidae")
+#new dataset only including the Cercopithecidae and Atelidae families
+
+plot1 <- ggplot(data = d3, aes(x = Family, y = Body_mass_female_mean))
+plot1 <- plot1 + geom_boxplot()
+plot1
+
+plot2 <- ggplot(data = d3, aes(x = Family, y = Body_mass_male_mean))
+plot2 <- plot2 + geom_boxplot()
+plot2
+
+plot3 <- ggplot(data = d3, aes(x = Family, y = Mass_Dimorphism))
+plot3 <- plot3 + geom_boxplot()
+plot3
+
+```
 
 
 
