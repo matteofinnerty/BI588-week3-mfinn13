@@ -49,5 +49,14 @@ stError <- function(x){
 stError(vector)
 ```
 
+**Normal Distribution Confidence Interval Example**
+```{r}
+#create a random normal distribution using the rnorm(sample-size, mean, standard deviation) function
+#the set.seed() function ensures that each time the function is run, it returns the same set of random numbers
+x <- rnorm(10000, 0, 1)
 
+#create a histogram of this norm
+hist(x, freq = TRUE)
+
+```
 

@@ -51,5 +51,22 @@ There is a built in R function to calculate standard deviation. It is sd().
 Uncertainty tell us how reliable our stastistics are (ie. how reliable our estimates of population parameters are).
 In general, we expect confidence to increase with sample size, and to decrease with variability. 
 
-*Standard Error* or Standard Error of the Mean is a measurement of uncertainty. It has the same units as the original measurements. 
+*Standard Error* 
+Standard Error of the Mean is a measurement of uncertainty. It has the same units as the original measurements. 
 It can be defined as the square root of the average sample variance (sq root (sample variance/sample size)). This is the same thing as the sample standard deviation divided by the square root of the number of observations. 
+
+*Confidence Intervals*
+A confidence interval shows the likely range of values into which an estimate would fall if the sampling exercise were to be repeated. We can talk about different confidence intervals (e.g., 50%, 95%, 99%), and the higher the confidence we want to have, the wider the interval will be.
+
+The 95% confidence interval, then, describes the range of values into which a statistic, calculated based on a repeated sample, would be expected to fall 95% of the time. We typically estimate confidence intervals with respect to specific theoretical distributions (e.g., normal, Poisson, Student’s t, F) and different characteristics about our sample (e.g., mean, standard deviation, degrees of freedom).
+
+**Important Terms related to Uncertainty**
+*Random variable*: a variable whose value is the outcome of a random process
+*Discrete variables*: countable. 
+*Continuous variables*: can be measured to infinite levels of accuracy, uncountable.
+*Normal distribution*: Mean = median = mode, observations become less frequent the further from the center that you are; bell-shaped curve
+*Independent observations*: when the instance/observation of one does not affect the probability of the instance of another. 
+*Dependent observations*: when the instance/observation of one does not affect the probability of the instance of another. 
+*Quantile*: a division of the distribution. For example, a quartile is a type of quantile that is 1/4th of the distribution. 
+  the qnorm() function can be used to calculate a confidence interval. For example qnorm(0.025, mean=0, sd=1) tells us the number of standard deviations away from the mean that contains 2.5% of the normal distribution with mean. 
+
