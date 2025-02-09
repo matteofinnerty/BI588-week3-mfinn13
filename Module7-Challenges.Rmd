@@ -40,3 +40,14 @@ sampVariance <- function(x){
 sampVariance(vector)
 ```
 
+**Challenge 4**
+Write a function to calculate standard error
+```{r}
+stError <- function(x){
+  sd(x)/sqrt(length(x))
+}
+stError(vector)
+```
+
+
+

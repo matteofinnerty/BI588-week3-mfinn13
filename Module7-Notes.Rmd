@@ -47,4 +47,9 @@ Variance tends to decrease as sample size increases
 
 There is a built in R function to calculate standard deviation. It is sd(). 
 
+**Describing Uncertainty in Measures of Spread**
+Uncertainty tell us how reliable our stastistics are (ie. how reliable our estimates of population parameters are).
+In general, we expect confidence to increase with sample size, and to decrease with variability. 
 
+*Standard Error* or Standard Error of the Mean is a measurement of uncertainty. It has the same units as the original measurements. 
+It can be defined as the square root of the average sample variance (sq root (sample variance/sample size)). This is the same thing as the sample standard deviation divided by the square root of the number of observations. 
