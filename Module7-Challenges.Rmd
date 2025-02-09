@@ -59,4 +59,9 @@ x <- rnorm(10000, 0, 1)
 hist(x, freq = TRUE)
 
 ```
+**Challenge 5**
+How does the confidence interval differ when made via simulation? How does the confidence interval change when the sample size, n, changes?
+
+The confidence interval width is smaller when we use simulation. 
+The confidence interval width decreases when we increase the sample size. 
 

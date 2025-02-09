@@ -69,4 +69,39 @@ The 95% confidence interval, then, describes the range of values into which a st
 *Dependent observations*: when the instance/observation of one does not affect the probability of the instance of another. 
 *Quantile*: a division of the distribution. For example, a quartile is a type of quantile that is 1/4th of the distribution. 
   the qnorm() function can be used to calculate a confidence interval. For example qnorm(0.025, mean=0, sd=1) tells us the number of standard deviations away from the mean that contains 2.5% of the normal distribution with mean. 
+  
+Calculating Confidence Intervals example
+```{r}
+vector2 <- c(1:15)
+#creates vector
+m <- mean(vector2)
+n <- length(vector2)
+v <- var(vector2)
+stdev <- sd(vector2)
+stErr <- sqrt(v/n)
+#creates variables for the mean, sample size, variance, standard deviation, and standard error 
+
+upperIntervalBound <- m + qnorm(0.975, mean = 0, sd = 1) * stErr
+lowerIntervalBound <- m + qnorm(0.025, mean = 0, sd = 1) *stErr
+#I don't fully understand this. Is this kind of transforming the data so that x axis is number of sd away from the mean, and thus the mean is 0?
+
+confidenceInterval <- c(lowerIntervalBound, upperIntervalBound)
+confidenceInterval
+#This creates a 95% confidence interval
+```
+
+Calculating Confidence Intervals by Bootstrapping(simulation) Example
+```{r}
+#this example involves randomly choosing 15 numbers from our vector x (which holds numbers 1-15) with replacement, 10000 times. 
+x <- c(1:15)
+set <- NULL #sets up a dummy variable to hold simulations
+n <- 10000
+for (i in 1:10000) {
+  set[i] <- mean(sample(x, n, replace= TRUE))
+  #set is taking 10000 different means essentially. Each mean comes from a simulated data set of 15 numbers that are picked from the vector x (with replacement, meaning there can be repeats)
+}
+
+quantile(set, c(0.025, 0.975))
+#this outputs the 95% confidence interval
+```
 
