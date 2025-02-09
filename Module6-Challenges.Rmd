@@ -4,4 +4,21 @@ output: html_document
 date: "2025-02-09"
 ---
 
+**Challenge 1**
+Loading a data set into a data frame, and summarizing the variables in that data frame using the summary() function. 
+```{r}
+library(curl)
+file <- curl("https://raw.githubusercontent.com/fuzzyatelin/fuzzyatelin.github.io/refs/heads/master/AN588_Fall23/Country-Data-2016.csv")
+#loading data set by using a github url that links to the raw data
+dataframe <- read.csv(file, header = TRUE, sep = ",", stringsAsFactors = FALSE)
+#creates a new data frame using the data that was loaded into file. Header = true indicates that there is a header in the data set.
+#sep indicates what is used to separate data. Strings as factors converts all the strings to factors. Reminder: factors are 
+#strings that have numeric values assigned to them. 
+head(dataframe)
+#first 6 rows of data
+summary(dataframe)
+#summary of the different variables
+```
+
+**Challenge 2**
 
