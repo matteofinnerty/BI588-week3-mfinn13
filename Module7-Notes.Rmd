@@ -9,51 +9,65 @@ This module requires the installation of the package {sciplot}
 install.packages('sciplot')
 #downloads new package, sciplot
 ```
+
 **Important Terms**
 *Population (N)* = includes all of the elements from a set of data (e.g., all of the vervet monkeys in the world)
 *Sample (n)* = one or more observations from a population (e.g., the set of vervets trapped during a field season in South Africa, the set of vervet skeletons found in a museum)
 *Parameter* = a measurable characteristic of a population (e.g., the mean value of the femur length of all vervets)
 *Statistic* = a measurable characteristic about a sample, described by a function applied to the sample (e.g., the mean length of vervet monkey femora found at the American Museum of Natural History).
 
-Note: A statistic can be used to infer a property of the population, such as an unknown parameter. 
+Note: A statistic can be used to infer a property of the population, such as an unknown parameter. Then, this stastic would be referred to as an *estimator*. 
 
 **Measures of Central Tendency**
 *Mode* = most common measurement of values observed
 *Median* = middle value in a rank ordered series of values
 *Mean* = the sum of measured values divided by n = the average or the arithmetic mean
 
-These measures of central tendency are useful for additive.
+These measures of central tendency are useful for additive (linear) data.
 
 Other measures of central tendency are useful for data that are not additive. For example: 
 
-*Harmonic mean* = the reciprocal of the average of the reciprocals of a set of values. This measure is particularly useful for understanding the mean of a set of ratios or rates, because it will equalize the weights of each data point.
+*Harmonic mean* = the reciprocal of the average of the reciprocals of a set of values. This measure is particularly useful for understanding the mean of a set of ratios or rates, because it will equalize the weights of each data point. (good for comparing rates!)
+
 *Geometric mean* = a measure of central tendency for processes that are multiplicative rather than additive = the nth root of the product of the values (for the mathematically inclined, it also = the antilog of the averaged log values). This measure is particularly useful when the values are not independent of each other, or if they make large fluctuations.
 
 **Measures of Spread**
-A measure of spread or variability in a dataset is one of the most important summary statistics to calculate.
+A measure of spread or variability in a dataset is one of the most important summary statistics to calculate. It tells you how the data relate to the measures of central tendency (usually the mean).
 
 Examples of measures of spread include:
 *range* : max-min
 *interquartile range*: 75th percentile - 25th percentile
 *sum of squares*: the sum of the squared differences of each data point from the mean
-*variance*: the sum of squares divided by n
-*sample variance* the sum of squares divided by n-1
-*standard deviation*: the square root of variance 
+*variance*: the sum of squares divided by n. (unit = original unit ^2)
+*sample variance* the sum of squares divided by n-1 (this makes the variance slightly greater)
+*standard deviation*: the square root of variance (unit = original unit)
 
 More important terms
 *Degrees of freedom*: the number of values used to calculate a sample statistic that are free to vary. Is equal to n-(the number of sample statistics you are creating). This is typically n-1.
 
 Variance tends to decrease as sample size increases 
 
+**For loops**
+Can be used to repeat sections of code. 
+Multiple ways to do so: for (n in seq( min, max, counting by))
+
+**rnorm function**
+Takes a random number from a normal distribution
+Works as follows: rnorm(sample size, mean = *mean*, sd = *standardDeviation*)
+
 There is a built in R function to calculate standard deviation. It is sd(). 
 
 **Describing Uncertainty in Measures of Spread**
-Uncertainty tell us how reliable our stastistics are (ie. how reliable our estimates of population parameters are).
-In general, we expect confidence to increase with sample size, and to decrease with variability. 
+Uncertainty tell us how reliable our statistics are (ie. how reliable our estimates of population parameters are).
+In general, we expect confidence to increase with sample size, and to decrease with variability (varianec). 
 
 *Standard Error* 
 Standard Error of the Mean is a measurement of uncertainty. It has the same units as the original measurements. 
-It can be defined as the square root of the average sample variance (sq root (sample variance/sample size)). This is the same thing as the sample standard deviation divided by the square root of the number of observations. 
+It can be defined as the square root of the average sample variance (sq root (sample variance/sample size)). This is the same thing as the (sample standard deviation)/ (the square root of the number of observations). It is proportional to the ratio of variance to sample size (if variance increases, error increases; if sample size increases, error decreases)
+
+SE = sq root(sample variance/sample size)
+
+R does not have a standard error function, but {sciplot} does!
 
 *Confidence Intervals*
 A confidence interval shows the likely range of values into which an estimate would fall if the sampling exercise were to be repeated. We can talk about different confidence intervals (e.g., 50%, 95%, 99%), and the higher the confidence we want to have, the wider the interval will be.
@@ -70,6 +84,12 @@ The 95% confidence interval, then, describes the range of values into which a st
 *Quantile*: a division of the distribution. For example, a quartile is a type of quantile that is 1/4th of the distribution. 
   the qnorm() function can be used to calculate a confidence interval. For example qnorm(0.025, mean=0, sd=1) tells us the number of standard deviations away from the mean that contains 2.5% of the normal distribution with mean. 
   
+the qnorm(proportion, mean = *mean*, sd = *standardDeviation*) tells us the number of standard deviations away from the mean that the inputted proportion of data fall. For example qnorm(0.025, mean = 0, sd = 1) would tell us the value (in standard deviations away from the mean) at which 2.5% of data are less than. 
+
+the dnorm() creates a density function. This is essentially proportion instead of frequency. 
+the pnorm() function is similar to dnorm() but is cumulative proportion.
+
+
 Calculating Confidence Intervals example
 ```{r}
 vector2 <- c(1:15)
@@ -91,6 +111,8 @@ confidenceInterval
 ```
 
 Calculating Confidence Intervals by Bootstrapping(simulation) Example
+
+Bootstrapping is essentially constructing a distribution via simulation. It is used when limited data is available. You can bootstrap a small sample of data to reconstruct the entire distribution. 
 ```{r}
 #this example involves randomly choosing 15 numbers from our vector x (which holds numbers 1-15) with replacement, 10000 times. 
 x <- c(1:15)
