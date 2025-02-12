@@ -5,10 +5,7 @@ date: "2025-02-09"
 ---
 **Module 7: Central Tendency and Variance**
 This module requires the installation of the package {sciplot}
-```{r}
-install.packages('sciplot')
-#downloads new package, sciplot
-```
+Go to packages. Top left --> install, and search for it.
 
 **Important Terms**
 *Population (N)* = includes all of the elements from a set of data (e.g., all of the vervet monkeys in the world)
